@@ -2,6 +2,8 @@ package login_registro.com.login_registro.Service;
 
 import org.springframework.stereotype.Service;
 
+import config.exceptions.Credenciales_Invalidas;
+import login_registro.com.login_registro.Model.LoginRequest;
 import login_registro.com.login_registro.Model.User;
 import login_registro.com.login_registro.Model.UserRequest;
 import login_registro.com.login_registro.Model.UserResponse;
@@ -13,8 +15,8 @@ import lombok.RequiredArgsConstructor;
 public class UserService {
     private final UserRepository repository;
 
-    public UserResponse registro (UserRequest res){
-        User u  = new User();
+    public UserResponse registro(UserRequest res) {
+        User u = new User();
         u.setNombre(res.nombre());
         u.setApellidos(res.apellidos());
         u.setCorreo(res.correo());
@@ -23,5 +25,18 @@ public class UserService {
         repository.save(u);
 
         return new UserResponse(u.getNombre(), u.getApellidos(), u.getCorreo(), u.getContrasena());
+    }
+
+    public UserResponse login(LoginRequest request) {
+
+        User usuario = repository.findByCorreo(request.correo().toLowerCase().trim())
+                .orElseThrow(() -> new Credenciales_Invalidas("correo no se ha encontrado"));
+
+        if (!usuario.getContrasena().equals(request.contrasena())) {
+            throw new Credenciales_Invalidas("contraseña incorrecta");
+        }
+
+        return new UserResponse(usuario.getNombre(), usuario.getApellidos(), usuario.getCorreo(),
+                usuario.getContrasena());
     }
 }

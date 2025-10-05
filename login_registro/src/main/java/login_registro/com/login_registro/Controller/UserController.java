@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import jakarta.validation.Valid;
+import login_registro.com.login_registro.Model.LoginRequest;
 import login_registro.com.login_registro.Model.UserRequest;
 import login_registro.com.login_registro.Model.UserResponse;
 import login_registro.com.login_registro.Service.UserService;
@@ -26,4 +27,10 @@ public class UserController {
     public ResponseEntity<UserResponse> registro(@Valid @RequestBody UserRequest request) {
         return ResponseEntity.status(HttpStatus.CREATED).body(service.registro(request));
     }
+
+    @PostMapping("/login")
+    public ResponseEntity<UserResponse> login(@Valid @RequestBody LoginRequest request) {
+        return ResponseEntity.ok(service.login(request));
+    }
+    
 }
