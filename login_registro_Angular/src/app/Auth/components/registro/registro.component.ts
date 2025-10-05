@@ -5,8 +5,7 @@ import { AuthService } from '../../services/auth.service';
 @Component({
   selector: 'app-registro',
   imports: [ReactiveFormsModule],
-  templateUrl: './registro.component.html',
-  styleUrl: './registro.component.css'
+  templateUrl: './registro.component.html'
 })
 export class RegistroComponent {
 
