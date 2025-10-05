@@ -1,0 +1,21 @@
+<div class="container">
+    <form [formGroup]="RegistroFormulario" (ngSubmit)="registrarse()">
+        <div class="">
+            <label for="nombre">nombre</label>
+            <input type="text" class="border-1 m-2 p-2" formControlName="nombre">
+        </div>
+        <div class="">
+            <label for="nombre">apellidos</label>
+            <input type="text" class="border-1 m-2 p-2" formControlName="apellidos">
+        </div>
+        <div class="">
+            <label for="nombre">correo</label>
+            <input type="text" class="border-1 m-2 p-2" formControlName="correo">
+        </div>
+        <div class="">
+            <label for="nombre">contraseña</label>
+            <input type="password" class="border-1 m-2 p-2" formControlName="contrasena">
+        </div>
+        <button class="bg-blue-800 text-white p-2 rounded-lg">enviar</button>
+    </form>
+</div>
