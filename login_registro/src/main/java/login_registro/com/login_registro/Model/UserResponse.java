@@ -6,7 +6,8 @@ public record UserResponse(
     @NotBlank String nombre,
     @NotBlank String apellidos,
     @NotBlank String correo,
-    @NotBlank String contrasena
+    @NotBlank String contrasena,
+    @NotBlank String rol
 ) {
 
     

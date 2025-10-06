@@ -1,4 +1,4 @@
-package config.exceptions;
+package login_registro.com.login_registro.config.exceptions;
 
 public class Credenciales_Invalidas extends RuntimeException  {
     

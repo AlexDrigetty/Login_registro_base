@@ -2,11 +2,12 @@ package login_registro.com.login_registro.Service;
 
 import org.springframework.stereotype.Service;
 
-import config.exceptions.Credenciales_Invalidas;
+import login_registro.com.login_registro.Enum.Roles;
 import login_registro.com.login_registro.Model.LoginRequest;
 import login_registro.com.login_registro.Model.User;
 import login_registro.com.login_registro.Model.UserRequest;
 import login_registro.com.login_registro.Model.UserResponse;
+import login_registro.com.login_registro.config.exceptions.Credenciales_Invalidas;
 import login_registro.com.login_registro.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 
@@ -21,10 +22,11 @@ public class UserService {
         u.setApellidos(res.apellidos());
         u.setCorreo(res.correo());
         u.setContrasena(res.contrasena());
+        u.setRol(Roles.CLIENTE);
 
         repository.save(u);
 
-        return new UserResponse(u.getNombre(), u.getApellidos(), u.getCorreo(), u.getContrasena());
+        return new UserResponse(u.getNombre(), u.getApellidos(), u.getCorreo(), u.getContrasena(), u.getRol().name());
     }
 
     public UserResponse login(LoginRequest request) {
@@ -37,6 +39,6 @@ public class UserService {
         }
 
         return new UserResponse(usuario.getNombre(), usuario.getApellidos(), usuario.getCorreo(),
-                usuario.getContrasena());
+                usuario.getContrasena(), usuario.getRol().name());
     }
 }
