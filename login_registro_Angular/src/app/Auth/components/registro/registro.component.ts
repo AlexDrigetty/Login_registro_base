@@ -1,11 +1,11 @@
 import { Component, Inject, inject } from '@angular/core';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { AuthService } from '../../services/auth.service';
-import { Router, RouterLink, RouterLinkActive } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-registro',
-  imports: [ReactiveFormsModule, RouterLink, RouterLinkActive],
+  imports: [ReactiveFormsModule, RouterLink],
   templateUrl: './registro.component.html'
 })
 export class RegistroComponent {

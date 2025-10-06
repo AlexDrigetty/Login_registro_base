@@ -8,6 +8,7 @@ export interface userRequest {
   apellidos: string;
   correo: string;
   contrasena: string;
+  rol: "ADMIN" | "ROL" | "CLIENTE"
 }
 
 @Injectable({
