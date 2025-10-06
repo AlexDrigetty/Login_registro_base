@@ -1,16 +1,18 @@
-import { Component, inject } from '@angular/core';
+import { Component, Inject, inject } from '@angular/core';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { AuthService } from '../../services/auth.service';
+import { Router, RouterLink, RouterLinkActive } from '@angular/router';
 
 @Component({
   selector: 'app-registro',
-  imports: [ReactiveFormsModule],
+  imports: [ReactiveFormsModule, RouterLink, RouterLinkActive],
   templateUrl: './registro.component.html'
 })
 export class RegistroComponent {
 
   fb  = inject(FormBuilder)
   private servicio = inject(AuthService)
+  private ruta = inject(Router)
 
   RegistroFormulario = this.fb.group({
     nombre: ["", [Validators.required]],
@@ -30,9 +32,10 @@ export class RegistroComponent {
     }
 
     this.servicio.registro(cargar_data).subscribe({
-      next(res){
+      next:(res)=>{
         console.log("Se registro correctamente", res)
         alert("Se ha registrado correctamente")
+        this.ruta.navigateByUrl('/login');
       },
       error(error){
         console.error("Ocurrio un error" , error)
